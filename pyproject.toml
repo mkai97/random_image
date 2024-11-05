@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "random-image"
+version = "0.1.0"
+description = ""
+authors = ["makai <1345744510@qq.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.4"
+uvicorn = "^0.32.0"
+qiniu = "^7.15.0"
+loguru = "^0.7.2"
+pytest = "^8.3.3"
+freezegun = "^1.5.1"
+python-dotenv = "^1.0.1"
+schedule = "^1.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

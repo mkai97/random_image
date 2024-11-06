@@ -7,8 +7,16 @@ WORKDIR /app
 # 安装poetry
 RUN pip install poetry
 
+# 如果安装很慢，可以尝试使用清华镜像源
+# RUN pip install poetry \
+#   && pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+
 # 验证poetry是否安装成功
 RUN poetry --version
+
+# poetry config repositories.pypi https://pypi.tuna.tsinghua.edu.cn/simple
+
 
 # 复制pyproject.toml和poetry.lock，并安装依赖
 COPY pyproject.toml poetry.lock ./

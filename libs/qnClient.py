@@ -145,18 +145,21 @@ class QnClient:
         return filepaths
 
     def get_onefile_by_prefix(self):
-        filepath = ""
+        filepath = None
         sqUtils = SqlUtils()
         sqUtils.open_conn()
         files = sqUtils.query_data("files")
         sqUtils.close_conn()
+        file_key = None
         if len(files) == 0:
             files = self.get_file_list(prefix=source_path)
             filepath = random.choice(files)
+            file_key = filepath['key']
         if len(files) > 0:
             filepath = random.choice(files)
+            file_key = filepath['keyname']
 
-        cdn_image_url = cdn_url + "/" + filepath['key'] + suffix
+        cdn_image_url = cdn_url + "/" + file_key + suffix
 
         # 返回一个文件
         try:

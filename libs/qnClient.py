@@ -38,7 +38,7 @@ secret_key = os.getenv('QINIU_SECRET_KEY')
 bucket_name = os.getenv('QINIU_TEST_BUCKET')
 source_path = os.getenv("QINIU_SOURCE_PATH")
 cdn_url = os.getenv("QINIU_CDN_URL")
-suffix = os.getenv("QINNIU_SUFFIX")
+suffix = os.getenv("QINIU_SUFFIX")
 
 hostscache_dir = None
 
@@ -145,19 +145,25 @@ class QnClient:
         return filepaths
 
     def get_onefile_by_prefix(self):
-        filepath = None
         sqUtils = SqlUtils()
         sqUtils.open_conn()
         files = sqUtils.query_data("files")
+        print("查询数据结果：")
+        print(files)
         sqUtils.close_conn()
-        file_key = None
+
         if len(files) == 0:
             files = self.get_file_list(prefix=source_path)
             filepath = random.choice(files)
+            print("从接口取数据")
             file_key = filepath['key']
-        if len(files) > 0:
+            mimeType = filepath['mimeType']
+        else:
             filepath = random.choice(files)
-            file_key = filepath['keyname']
+            print("从数据库取数据:")
+            print(filepath)
+            file_key = filepath[0]
+            mimeType = filepath[3]
 
         cdn_image_url = cdn_url + "/" + file_key + suffix
 
@@ -168,7 +174,7 @@ class QnClient:
             response.raise_for_status()  # 确保请求成功
 
             # 创建一个StreamingResponse对象来流式传输图片数据
-            return StreamingResponse(response.raw, media_type=filepath['mimeType'])
+            return StreamingResponse(response.raw, media_type=mimeType)
         except requests.RequestException as e:
             # 如果请求失败，返回错误信息
             raise HTTPException(status_code=400, detail=f"Failed to retrieve image: {e}")

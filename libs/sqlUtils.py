@@ -47,12 +47,12 @@ class SqlUtils:
         self.conn.commit()
 
     def query_data(self, table_name):
-
         # 查询并打印所有记录
         self.c.execute('SELECT * FROM ' + table_name)
-        print("query_data:")
-        print(self.c.fetchall())
-        return self.c.fetchall()
+        print("query_data---"+table_name)
+        res = self.c.fetchall()
+        res.reverse()
+        return res
 
     def clear_data(self, table_name):
         self.c.execute('DELETE FROM ' + table_name)

@@ -5,7 +5,7 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # 安装poetry
-RUN pip install poetry
+RUN pip install poetry@2.1.2
 
 # 如果安装很慢，可以尝试使用清华镜像源
 # RUN pip install poetry \

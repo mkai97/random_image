@@ -4,3 +4,7 @@
 2025-03-31 10:29:51.976 | INFO     | libs.logs:dispatch:26 - Client IP: 127.0.0.1, Method: GET, Path: /openapi.json, Status: 200, Time: 0.00s
 2025-03-31 10:30:04.193 | INFO     | libs.logs:dispatch:26 - Client IP: 127.0.0.1, Method: GET, Path: /getoneimage, Status: 200, Time: 1.67s
 2025-03-31 10:30:14.237 | INFO     | libs.logs:dispatch:26 - Client IP: 127.0.0.1, Method: GET, Path: /getoneimage, Status: 200, Time: 0.66s
+2025-03-31 10:32:59.708 | INFO     | libs.logs:dispatch:26 - Client IP: 127.0.0.1, Method: GET, Path: /docs, Status: 200, Time: 0.00s
+2025-03-31 10:32:59.909 | INFO     | libs.logs:dispatch:26 - Client IP: 127.0.0.1, Method: GET, Path: /openapi.json, Status: 200, Time: 0.00s
+2025-03-31 11:44:11.564 | INFO     | libs.logs:dispatch:26 - Client IP: 127.0.0.1, Method: GET, Path: /, Status: 200, Time: 0.01s
+2025-03-31 11:44:14.583 | INFO     | libs.logs:dispatch:26 - Client IP: 127.0.0.1, Method: GET, Path: /docs, Status: 200, Time: 0.00s

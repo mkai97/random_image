@@ -1,8 +1,10 @@
-[tool.poetry]
+[project]
 name = "random-image"
 version = "0.1.0"
 description = ""
-authors = ["makai <1345744510@qq.com>"]
+authors = [
+    { name = "MKai.dev", email = "mkai_dev@126.com" }
+    ]
 readme = "README.md"
 
 [tool.poetry.dependencies]

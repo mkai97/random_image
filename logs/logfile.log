@@ -37,3 +37,4 @@
 2024-11-06 11:54:01.038 | INFO     | libs.logs:dispatch:26 - Client IP: 127.0.0.1, Method: GET, Path: /getoneimage, Status: 200, Time: 3.77s
 2024-11-06 11:55:37.321 | INFO     | libs.logs:dispatch:26 - Client IP: 127.0.0.1, Method: GET, Path: /getoneimage, Status: 200, Time: 2.88s
 2024-11-06 12:03:17.999 | INFO     | libs.logs:dispatch:26 - Client IP: 127.0.0.1, Method: GET, Path: /getoneimage, Status: 200, Time: 5.59s
+2024-11-06 12:40:12.124 | INFO     | libs.logs:dispatch:26 - Client IP: 127.0.0.1, Method: GET, Path: /, Status: 200, Time: 0.01s

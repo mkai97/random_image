@@ -39,6 +39,7 @@ bucket_name = os.getenv('QINIU_TEST_BUCKET')
 source_path = os.getenv("QINIU_SOURCE_PATH")
 cdn_url = os.getenv("QINIU_CDN_URL")
 suffix = os.getenv("QINIU_SUFFIX")
+temp_suffix = os.getenv("QINIU_TEMP_SUFFIX")
 
 hostscache_dir = None
 
@@ -166,6 +167,41 @@ class QnClient:
             mimeType = filepath[3]
 
         cdn_image_url = cdn_url + "/" + file_key + suffix
+
+        # 返回一个文件
+        try:
+            # 发起请求到CDN获取图片
+            response = requests.get(cdn_image_url, stream=True)
+            response.raise_for_status()  # 确保请求成功
+
+            # 创建一个StreamingResponse对象来流式传输图片数据
+            return StreamingResponse(response.raw, media_type=mimeType)
+        except requests.RequestException as e:
+            # 如果请求失败，返回错误信息
+            raise HTTPException(status_code=400, detail=f"Failed to retrieve image: {e}")
+
+    def get_onefile_by_temp_prefix(self):
+        sqUtils = SqlUtils()
+        sqUtils.open_conn()
+        files = sqUtils.query_data("files")
+        print("查询数据结果：")
+        print(files)
+        sqUtils.close_conn()
+
+        if len(files) == 0:
+            files = self.get_file_list(prefix=source_path)
+            filepath = random.choice(files)
+            print("从接口取数据")
+            file_key = filepath['key']
+            mimeType = filepath['mimeType']
+        else:
+            filepath = random.choice(files)
+            print("从数据库取数据:")
+            print(filepath)
+            file_key = filepath[0]
+            mimeType = filepath[3]
+
+        cdn_image_url = cdn_url + "/" + file_key + temp_suffix
 
         # 返回一个文件
         try:

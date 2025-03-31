@@ -26,9 +26,12 @@ async def root():
 
 
 @app.get("/getoneimage")
-async def randomimage():
+async def randomimage(quality="origin"):
     """
         根据请求从CDN获取图片并返回给客户端。
+
+        参数:
+        quality (string) origin 原图 temp 缩略图
 
         返回:
         image (StreamingResponse): 图片内容以流的形式返回。
@@ -37,11 +40,18 @@ async def randomimage():
         HTTPException: 如果无法从CDN获取图片，则抛出400错误。
     """
 
-
     # 初始化数据库
     sqlUtils = SqlUtils()
     sqlUtils.open_conn()
     sqlUtils.create_table()
     sqlUtils.close_conn()
 
-    return QnClient().get_onefile_by_prefix()
+    if quality == "origin":
+        return QnClient().get_onefile_by_prefix()
+    elif quality == "temp":
+        return QnClient().get_onefile_by_temp_prefix()
+    else:
+        return {
+            "message": "The quality is not supported!",
+            "version": "1.0",
+            'tips': "Please visit /docs to see the API documentation."}

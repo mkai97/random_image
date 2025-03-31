@@ -8,7 +8,8 @@
    - ***QINIU_TEST_BUCKET：*** 七牛云存储桶名称
    - ***QINIU_CDN_URL：*** 七牛云CDN域名
    - ***QINIU_SOURCE_PATH：*** 图片文件存储路径
-   - ***QINIU_SUFFIX：*** 图片预处理后缀
+   - ***QINIU_SUFFIX：*** 图片预处理后缀-高质量
+   - ***QINIU_TEMP_SUFFIX：*** 图片预处理后缀-低质量
 
 ## 启动方法
  ### 1. docker-compose 容器启动（推荐，简单）
